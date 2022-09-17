@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import '../../../config/app/dependency-injection';
 
 function loadEnvConfig() {
   const envConfig = dotenv.config();
