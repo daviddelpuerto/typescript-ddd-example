@@ -9,7 +9,7 @@
     "start": "node build/src/index.js",
     "start:dev": "ts-node-dev src/index.ts",
     "docker:up": "docker-compose up --build",
-    "docker:down": "docker-comopse down",
+    "docker:down": "docker-compose down",
     "test": "NODE_ENV=test jest --verbose"
   },
   "keywords": [
