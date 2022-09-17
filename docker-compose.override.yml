@@ -27,13 +27,11 @@ services:
     networks:
       - node_app
     ports:
-      - "8080:80"
+      - "${NODE_PORT}:80"
     depends_on:
       - node
     volumes:
       - ./docker/nginx/conf.d:/etc/nginx/conf.d
-
-
 
 volumes:
   dbdata:
