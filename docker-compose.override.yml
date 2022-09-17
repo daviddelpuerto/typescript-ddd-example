@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+
+  db:
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  node:
+    build:
+      args:
+        NODE_ENV: ${NODE_ENV}
+      context: .
+      dockerfile: docker/node/Dockerfile.dev
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: npm run start:dev
+
+  nginx:
+    build: ./docker/nginx
+    networks:
+      - node_app
+    ports:
+      - "8080:80"
+    depends_on:
+      - node
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+
+
+
+volumes:
+  dbdata:
