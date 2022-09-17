@@ -4,6 +4,7 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import * as http from 'http';
 import router from './routes';
+import loggerMiddleware from './middlewares/logger.middleware';
 import WinstonLogger from '../Shared/infrastructure/Logger';
 
 export class Server {
@@ -26,7 +27,7 @@ export class Server {
     this.express.use(helmet.hidePoweredBy());
     this.express.use(helmet.frameguard({ action: 'deny' }));
     this.express.use(compress());
-
+    this.express.use(loggerMiddleware);
     this.express.use(router);
   }
 
