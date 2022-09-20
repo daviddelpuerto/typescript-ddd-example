@@ -35,7 +35,7 @@ export default {
   },
   Users: {    
     'Repositories.MySqlUsersRepository': mySqlUsersRepository,
-    'UseCases.UserCreator': userCreator,
+    'UserCreator': userCreator,
     'Controllers.CreateUserController': new CreateUserController(userCreator),
   },
 };

@@ -1,13 +1,14 @@
-import dotenv from 'dotenv';
-import '../../../config/app/dependency-injection';
+import loadEnvConfig from '../../../config';
+import injectDependencies from '../../../config/app/dependency-injection';
+import WinstonLogger from './Logger';
 
-function loadEnvConfig() {
-  const envConfig = dotenv.config();
-  if (envConfig.error) {
-    process.stderr.write('⚠️  Couldn\'t find .env file  ⚠️\n');
-    process.stderr.write(`${envConfig.error}\n`);
-    process.exit(1);
-  }
-}
+const logger = new WinstonLogger('Bootstrap');
 
-loadEnvConfig();
+(function boostrap() {
+  logger.info('🚧 Starting boostrap process');
+
+  loadEnvConfig();
+  injectDependencies();
+
+  logger.info('🏁 Finished bootsrap process');
+})();
