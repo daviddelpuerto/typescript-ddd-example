@@ -22,7 +22,7 @@ const colors = {
 class WinstonLogger implements Logger {
   private logger: WinstonLoggerType;
 
-  constructor() {
+  constructor(private name = '') {
     winston.addColors(colors);
 
     this.logger = winston.createLogger({
@@ -31,7 +31,7 @@ class WinstonLogger implements Logger {
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.colorize({ all: true }),
-        winston.format.printf((log) => `${log.timestamp} [${log.level}] ${log.message}`),
+        winston.format.printf((log) => `${log.timestamp} [${log.level}] ${this.name ? `[${this.name}] ` : ''}${log.message}`),
       ),
       transports: [
         new winston.transports.Console(),
