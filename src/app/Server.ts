@@ -6,6 +6,7 @@ import * as http from 'http';
 import router from './routes';
 import loggerMiddleware from './middlewares/logger.middleware';
 import WinstonLogger from '../Shared/infrastructure/Logger';
+import { AppDataSource } from '../Shared/infrastructure/persistence/mysql/connection';
 
 export class Server {
   private express: Express;
@@ -32,12 +33,20 @@ export class Server {
   }
 
   async listen(): Promise<void> {
-    return new Promise(resolve => {
-      this.httpServer = this.express.listen(this.port, () => {
-        this.logger.info(`App running on port ${this.port} in ${this.express.get('env')} mode`);
-        this.logger.info('  Press CTRL-C to stop\n');
-        resolve();
-      });
+    return new Promise((resolve, reject) => {
+      AppDataSource
+        .initialize()
+        .then(() => {
+          this.logger.info('⚡ Database connection is ready');
+
+          this.httpServer = this.express.listen(this.port, () => {
+            this.logger.info(`🚀 Server listening on port: [${this.port}]`);
+            this.logger.info(`   Running environment: [${this.express.get('env')}]`);
+            this.logger.info('      Press CTRL-C to stop\n');
+            resolve();
+          });
+
+        }).catch(reject);
     });
   }
 
