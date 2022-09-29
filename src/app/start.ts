@@ -1,4 +1,7 @@
 import { Server } from './Server';
+import Logger from '../Shared/infrastructure/Logger';
+
+const logger = new Logger('App');
 
 function handleError(err: Error) {
   console.log(err);
@@ -7,7 +10,7 @@ function handleError(err: Error) {
 
 try {
   const port = process.env.NODE_PORT || '3000';
-  new Server(port).listen().catch(handleError);
+  new Server(port, logger).listen().catch(handleError);
 } catch (error: any) {
   handleError(error);
 }
