@@ -1,31 +1,31 @@
 import winston, { Logger as WinstonLoggerType } from 'winston';
 import Logger from '../domain/Logger';
 
-const level = 'debug';
-
-const levels = {
-  error: 0,
-  info: 1,
-  http: 2,
-  debug: 3,
-};
-
-const colors = {
-  error: 'red',
-  info: 'green',
-  http: 'magenta',
-  debug: 'white',
-};
-
 export default class SharedLogger implements Logger {
   private logger: WinstonLoggerType;
 
+  readonly level = 'debug';
+
+  private levels = {
+    error: 0,
+    info: 1,
+    http: 2,
+    debug: 3,
+  };
+
+  private colors = {
+    error: 'red',
+    info: 'green',
+    http: 'magenta',
+    debug: 'white',
+  };
+
   constructor(private name = '') {
-    winston.addColors(colors);
+    winston.addColors(this.colors);
 
     this.logger = winston.createLogger({
-      level,
-      levels,
+      level: this.level,
+      levels: this.levels,
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.colorize({ all: true }),
