@@ -1,13 +1,8 @@
 import { Router } from 'express';
-import httpStatus from 'http-status-codes';
-import usersRoutes from './users.routes';
+import apiRouter from './api.router';
 
 const router = Router();
 
-router.get('/api', (_req, res) => {
-  return res.sendStatus(httpStatus.OK);
-});
-
-router.use('/api/users', usersRoutes);
+router.use('/api', apiRouter);
 
 export default router;
