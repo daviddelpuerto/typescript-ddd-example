@@ -1,3 +1,3 @@
 export default interface UsersRepository {
-  save(user: object): Promise<object>
+  save(email: string, password: string): Promise<object>
 }

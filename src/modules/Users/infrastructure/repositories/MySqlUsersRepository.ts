@@ -5,7 +5,7 @@ export default class MySqlUsersRepository {
     this.userEntity = userEntity;
   }
 
-  async save(user: object) {
-    return this.userEntity.save(user);
+  async save(email: string, password: string) {
+    return this.userEntity.save({ email, password });
   }
 }
