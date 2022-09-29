@@ -4,7 +4,7 @@ import Logger from '../Shared/infrastructure/Logger';
 const logger = new Logger('App');
 
 function handleError(err: Error) {
-  console.log(err);
+  logger.error(err);
   process.exit(1);
 }
 
