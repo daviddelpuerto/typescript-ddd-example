@@ -1,13 +1,12 @@
-import MySqlUsersRepository from '../infrastructure/repositories/MySqlUsersRepository';
+import UsersRepository from '../domain/UsersRepository';
 
 export default class UserCreator {
-  mySqlUsersRepository: MySqlUsersRepository;
 
-  constructor(mySqlUsersRepository: MySqlUsersRepository) {
-    this.mySqlUsersRepository = mySqlUsersRepository;
+  constructor(private usersRepository: UsersRepository) {
+    this.usersRepository = usersRepository;
   }
 
-  async run(user: object) {
-    return this.mySqlUsersRepository.save(user);
+  async run(email: string, password: string) {
+    return this.usersRepository.save(email, password);
   }
 }
