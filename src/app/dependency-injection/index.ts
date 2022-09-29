@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
 import dependencies from './dependencies';
-import Logger from '../../../src/Shared/infrastructure/Logger';
+import Logger from '../../Shared/infrastructure/Logger';
 
 const logger = new Logger('Dependency-Injection');
 

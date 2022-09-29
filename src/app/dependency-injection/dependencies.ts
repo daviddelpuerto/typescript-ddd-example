@@ -2,19 +2,19 @@
  * @HINT Register your global variables, functions and/or instances of classes as object properties on the default object exported on this module
  */
 
-import Logger from '../../../src/Shared/infrastructure/Logger';
+import Logger from '../../Shared/infrastructure/Logger';
 
 // TypeORM Entity
-import UserEntity from '../../../src/Shared/infrastructure/persistence/mysql/entities/User.entity';
+import UserEntity from '../../Shared/infrastructure/persistence/mysql/entities/User.entity';
 
 // Repositories
-import MySqlUsersRepository from '../../../src/modules/Users/infrastructure/repositories/MySqlUsersRepository';
+import MySqlUsersRepository from '../../modules/Users/infrastructure/repositories/MySqlUsersRepository';
 
 // Application use cases
-import UserCreator from '../../../src/modules/Users/application/UserCreator';
+import UserCreator from '../../modules/Users/application/UserCreator';
 
 // Controllers
-import CreateUserController from '../../../src/modules/Users/infrastructure/controllers/CreateUserController';
+import CreateUserController from '../../modules/Users/infrastructure/controllers/CreateUserController';
 
 
 // Instances of classes to inject on other classes

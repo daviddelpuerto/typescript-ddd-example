@@ -1,6 +1,6 @@
-import loadEnvConfig from '../../../config';
-import injectDependencies from '../../../config/app/dependency-injection';
 import Logger from './Logger';
+import loadEnvConfig from '../../../config';
+import injectDependencies from '../../app/dependency-injection';
 import createDatabaseConnection from './persistence/mysql/connection';
 
 const logger = new Logger('Bootstrap');
