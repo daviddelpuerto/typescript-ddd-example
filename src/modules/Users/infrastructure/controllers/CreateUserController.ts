@@ -4,21 +4,16 @@ import { Controller } from '../../../../Shared/infrastructure/Controller';
 import UserCreator from '../../application/UserCreator';
 
 export default class CreateUserController implements Controller {
-  public userCreator: UserCreator;
 
-  constructor(userCreator: UserCreator) {
+  constructor(private userCreator: UserCreator) {
     this.userCreator = userCreator;
   }
 
   async run(req: Request, res: Response) {
     try {
+      const { email, password } = req.body;
 
-      const { user_email: email, password } = req.body;
-
-      await this.userCreator.run({
-        email,
-        password,
-      });
+      await this.userCreator.run(email, password);
 
       res.sendStatus(httpStatus.CREATED);
     } catch (error) {
