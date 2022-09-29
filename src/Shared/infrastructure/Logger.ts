@@ -46,15 +46,16 @@ export default class SharedLogger implements Logger {
     this.logger.debug(message);
   }
 
-  error(message: string | Error) {
-    this.logger.error(message);
-  }
-
   info(message: string) {
     this.logger.info(message);
   }
 
   http(message: string) {
     this.logger.http(message);
+  }
+
+  error(message: string | Error) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-expressions */
+    message instanceof Error ? this.logger.error(message.stack) : this.logger.error(message);
   }
 }
