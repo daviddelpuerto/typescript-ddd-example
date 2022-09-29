@@ -1,4 +1,3 @@
-import { Service } from 'typedi';
 import winston, { Logger as WinstonLoggerType } from 'winston';
 import Logger from '../domain/Logger';
 
@@ -18,8 +17,7 @@ const colors = {
   debug: 'white',
 };
 
-@Service('Shared.Logger')
-class WinstonLogger implements Logger {
+export default class SharedLogger implements Logger {
   private logger: WinstonLoggerType;
 
   constructor(private name = '') {
@@ -60,5 +58,3 @@ class WinstonLogger implements Logger {
     this.logger.http(message);
   }
 }
-
-export default WinstonLogger;
