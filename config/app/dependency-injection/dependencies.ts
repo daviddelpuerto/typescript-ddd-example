@@ -2,7 +2,7 @@
  * @HINT Register your global variables, functions and/or instances of classes as object properties on the default object exported on this module
  */
 
-import WinstonLogger from '../../../src/Shared/infrastructure/Logger';
+import Logger from '../../../src/Shared/infrastructure/Logger';
 
 // TypeORM Entity
 import UserEntity from '../../../src/Shared/infrastructure/persistence/mysql/entities/User.entity';
@@ -31,7 +31,7 @@ const userCreator = new UserCreator(mySqlUsersRepository);
  */
 export default {
   Shared: {
-    Logger: new WinstonLogger(),
+    Logger: new Logger(),
   },
   Users: {    
     'Repositories.MySqlUsersRepository': mySqlUsersRepository,

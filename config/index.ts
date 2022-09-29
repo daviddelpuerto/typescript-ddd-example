@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
-import WinstonLogger from '../src/Shared/infrastructure/Logger';
+import Logger from '../src/Shared/infrastructure/Logger';
 
-const logger = new WinstonLogger('ConfigLoader');
+const logger = new Logger('ConfigLoader');
 
 export default function loadEnvConfig() {
   const envConfig = dotenv.config();

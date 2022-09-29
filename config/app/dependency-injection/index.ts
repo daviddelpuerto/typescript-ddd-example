@@ -1,8 +1,8 @@
 import { Container } from 'typedi';
 import dependencies from './dependencies';
-import WinstonLogger from '../../../src/Shared/infrastructure/Logger';
+import Logger from '../../../src/Shared/infrastructure/Logger';
 
-const logger = new WinstonLogger('Dependency-Injection');
+const logger = new Logger('Dependency-Injection');
 
 export default function injectDependencies() {
   logger.info('💉 Starting dependency injection');
