@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status-codes';
 import UserCreator from '../../application/UserCreator';
 import Logger from '../../../../Shared/domain/Logger';
+import EmailAlreadyRegistered from '../../domain/errors/EmailAlreadyRegistered';
 
 export default class CreateUserController implements Controller {
 
@@ -21,7 +22,13 @@ export default class CreateUserController implements Controller {
       res.sendStatus(httpStatus.CREATED);
     } catch (error: any) {
       logger.error(error);
-      res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+
+      if (error instanceof EmailAlreadyRegistered) {
+        res.status(httpStatus.BAD_REQUEST).send(error.message);
+      } else {
+        res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+      }
+
     }
   }
 }
