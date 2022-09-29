@@ -1,4 +1,6 @@
-export default class MySqlUsersRepository {
+import UsersRepository from '../../domain/UsersRepository';
+
+export default class MySqlUsersRepository implements UsersRepository {
   userEntity: any;
   
   constructor(userEntity: any) {
